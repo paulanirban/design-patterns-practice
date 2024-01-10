@@ -18,14 +18,14 @@ Creational design patterns provide various object creation mechanisms, which inc
 > 
 > **Note**: In common practice, **<u>singleton objects should be immutable</u>**. As one object is being shared by multiple classes, making it mutable would cause race conditions because some class may want to change that single object.
 >
-> **Simple**: A simple singleton [class](com/practice/designpatterns/creational/singleton/sample/SingleObjectClass.java) and its [usage](com/practice/designpatterns/creational/singleton/sample/SingletonPractice.java).
+> **Simple**: A simple singleton [class](src/com/practice/designpatterns/creational/singleton/sample/SingleObjectClass.java) and its [usage](src/com/practice/designpatterns/creational/singleton/sample/SingletonPractice.java).
 > 
-> **Multithreaded**: To make a singleton [class](com/practice/designpatterns/creational/singleton/sample/SingletonMultithreaded.java) thread-safe it needs to be synchronized. Here is the [usage](com/practice/designpatterns/creational/singleton/sample/SingletonPractice.java).
+> **Multithreaded**: To make a singleton [class](src/com/practice/designpatterns/creational/singleton/sample/SingletonMultithreaded.java) thread-safe it needs to be synchronized. Here is the [usage](src/com/practice/designpatterns/creational/singleton/sample/SingletonPractice.java).
 > 
 > To make singleton pattern work in multithreaded way, and to make sure that we shouldn't be ended up with the race conditions and multiple objects creation, *synchronized* block should be used. And also required to have
 > **Double Check Locking** or **DCL** in place.
 > 
-> **Eager Initialization**: Another way to create a singleton [class](com/practice/designpatterns/creational/singleton/sample/SingletonObjectEagerInit.java) without synchronization is using eager initialization.
+> **Eager Initialization**: Another way to create a singleton [class](src/com/practice/designpatterns/creational/singleton/sample/SingletonObjectEagerInit.java) without synchronization is using eager initialization.
 > 
 > However, using eager initialization is a memory overhead as the instance would be created at time of initial loading. But, in the contrary to the previous way for the multithreaded solution approach where initial access to the instance is slower (because of the creation), using eager initialization there is no such thing. 
 > 
@@ -60,6 +60,6 @@ Creational design patterns provide various object creation mechanisms, which inc
 >> * `void clear()`: Clear all configuration settings.
 > 
 > 
-> **Solution**: [Click](com/practice/designpatterns/creational/singleton/configmanager)
+> **Solution**: [Click](src/com/practice/designpatterns/creational/singleton/configmanager)
 > 
 > **Links**: https://www.baeldung.com/java-serialize-singleton
