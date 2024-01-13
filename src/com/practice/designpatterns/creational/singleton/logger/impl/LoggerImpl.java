@@ -1,7 +1,7 @@
 package com.practice.designpatterns.creational.singleton.logger.impl;
 
+import com.practice.designpatterns.creational.singleton.logger.LogLevel;
 import com.practice.designpatterns.creational.singleton.logger.Logger;
-import org.springframework.boot.logging.LogLevel;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -29,7 +29,7 @@ Creational design patterns provide various object creation mechanisms, which inc
 > 
 > However, using eager initialization is a memory overhead as the instance would be created at time of initial loading. But, in the contrary to the previous way for the multithreaded solution approach where initial access to the instance is slower (because of the creation), using eager initialization there is no such thing. 
 > 
-> **Exercise#1**: File based configuration manager
+> **Exercise#1**: **File Based Configuration Manager**
 >> **Problem Statement**
 >>
 >> You are tasked with creating a system-wide configuration manager for a complex software suite. The configuration manager is responsible for managing various configuration settings that affect the behavior and appearance of the software. To prevent multiple instances of the configuration manager, which could lead to inconsistencies and potential resource conflicts, you need to implement a design pattern that ensures the configuration manager is a singleton object.
@@ -62,7 +62,7 @@ Creational design patterns provide various object creation mechanisms, which inc
 > 
 > **Solution**: [Click](src/com/practice/designpatterns/creational/singleton/configmanager/impl/FileBasedConfigurationManagerImpl.java)
 >
-> **Exercise#2**: Logger
+> **Exercise#2**: **Logger**
 >> **Problem Statement**
 >>
 >> You are tasked with developing a logging module for a complex software application. The logging module needs to maintain a single log file throughout the application's execution to avoid file access conflicts and ensure consistency. To prevent multiple instances of the logging module and ensure thread-safe access to the log file, you need to implement the Singleton design pattern along with the logging functionality.
@@ -90,6 +90,34 @@ Creational design patterns provide various object creation mechanisms, which inc
 >> 
 > **Solution**: [Click](src/com/practice/designpatterns/creational/singleton/logger/impl/LoggerImpl.java)
 >
-> 
-> 
+> **Exercise#2**: **Connection Pool**
+>> **Problem Statement**
+>>
+>> You are tasked with designing a connection pool for a database management module of a complex software application.
+>> The connection pool is responsible for managing database connections efficiently to avoid unnecessary overhead and ensure optimal resource usage.
+>> To prevent multiple instances of the connection pool manager and ensure thread-safe access to connections, 
+>> you need to implement the Singleton design pattern along with the connection pool management functionality.
+>>
+>> **Assignment**
+>>
+>> Your task is to implement the ConnectionPool interface that follows the Singleton design pattern to manage a pool of database connections.
+>>
+>> **Part 1: Implementing Singleton and Connection Pool**
+>>
+>> 1. **Implement the Singleton design pattern**: Create a class that implements the ConnectionPool interface. Implement the Singleton design pattern within this class to ensure that only one instance of the connection pool manager can exist within the program.
+>> 2. **Implement the `getInstance(int maxConnections)` and `resetInstance()` methods**: Implement the getInstance(int maxConnections) method in the ConnectionPoolSolution class. This method should return the singleton instance of the connection pool manager class. Also, implement the resetInstance() method to reset the singleton instance to null.
+>>
+>> **Part 2: Connection Pool Management**
+>> 
+>> In connection pooling, the aim is to efficiently handle a group of database connections. This ensures optimal resource usage and effective sharing of connections across different parts of the software. 
+>>> Here's an analogy to help you understand the concept of connection pooling. Imagine a library with a large collection of books. The library has a shelf where all the books are kept. When a reader wants to borrow a book, they go to the shelf, pick up the book, and take it to a reading table. When they are done reading, they return the book to the shelf. The library keeps track of which books are available and which ones are currently being used by readers.
+>> 
+>> You have to implement the following methods:
+>>
+>> * `void initializePool()`: This method is responsible for initializing the connection pool. It should create a fixed number of connections and add them to the pool. Use the `DummyConnection` class to create dummy connections. Store the connections in a data structure of your choice, but you will have to track which connections are available and which ones are currently in use. 
+>> * `Connection getConnection()`: This method is responsible for providing a connection to the caller. It should return a connection from the pool of available connections. Once a connection is returned, it should be marked as "unavailable" so that other parts of the software don't use it.
+>> * `void releaseConnection(Connection connection)`: This method is responsible for releasing a connection back to the pool. It should mark the connection as "available" so that other parts of the software can use it.
+>> * `int getAvailableConnectionsCount()`: Implement this method to count how many "available" connections remain in the pool.
+>> * `int getTotalConnectionsCount()`: This method is about determining the total number of connections, whether they are currently in use or not.
+>> 
 > **Links**: https://www.baeldung.com/java-serialize-singleton

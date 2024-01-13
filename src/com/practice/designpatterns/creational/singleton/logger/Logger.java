@@ -1,6 +1,5 @@
 package com.practice.designpatterns.creational.singleton.logger;
 
-import org.springframework.boot.logging.LogLevel;
 public interface Logger {
     void log(LogLevel level, String message);
 
