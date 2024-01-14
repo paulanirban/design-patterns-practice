@@ -58,9 +58,8 @@ Creational design patterns provide various object creation mechanisms, which inc
 >> * `<T> void setConfiguration(String key, T value)`: Set a configuration value with type checking.
 >> * `void removeConfiguration(String key)`: Remove a configuration value based on a given key.
 >> * `void clear()`: Clear all configuration settings.
-> 
-> 
-> **Solution**: [Click](src/com/practice/designpatterns/creational/singleton/configmanager/impl/FileBasedConfigurationManagerImpl.java)
+>>
+>> **Solution**: [Click](src/com/practice/designpatterns/creational/singleton/configmanager/impl/FileBasedConfigurationManagerImpl.java)
 >
 > **Exercise#2**: **Logger**
 >> **Problem Statement**
@@ -88,7 +87,7 @@ Creational design patterns provide various object creation mechanisms, which inc
 >> * `void flush()`: This method flushes any buffered log entries to the log file. Find the appropriate method to use from the `java.io.PrintWriter` class.
 >> * `void close()`: This method closes the logger and releases any resources. Find the appropriate method to use from the `java.io.PrintWriter` class.
 >> 
-> **Solution**: [Click](src/com/practice/designpatterns/creational/singleton/logger/impl/LoggerImpl.java)
+>> **Solution**: [Click](src/com/practice/designpatterns/creational/singleton/logger/impl/LoggerImpl.java)
 >
 > **Exercise#2**: **Connection Pool**
 >> **Problem Statement**
@@ -120,4 +119,24 @@ Creational design patterns provide various object creation mechanisms, which inc
 >> * `int getAvailableConnectionsCount()`: Implement this method to count how many "available" connections remain in the pool.
 >> * `int getTotalConnectionsCount()`: This method is about determining the total number of connections, whether they are currently in use or not.
 >> 
+>> **Solution**: [Click](src/com/practice/designpatterns/creational/singleton/connectionpool/impl/ConnectionPoolImpl.java)
+> 
 > **Links**: https://www.baeldung.com/java-serialize-singleton
+
+> ### 2. Builder
+> **Builder** is a creational design pattern which helps to construct complex objects step by step. The pattern allows to produce different types and representations of an object using the same construction code.
+>
+> **Exercise#1**: **Builder Pattern Implementation for a messaging service**
+>> **Problem Statement**
+>>
+>> You are developing a messaging application with support for various message types, including text, images, audio, and video. Each message type can have additional attributes and settings, such as delivery status and timestamps. The current approach of creating message objects using multiple overloaded constructors has become error-prone and challenging to maintain. You should streamline the creation of message objects with different configurations and immutable objects.
+>>
+>> **Assignment**
+>>
+>> Your task is to implement the Builder pattern to create instances of message objects with different configurations. The Builder pattern allows for step-by-step construction of complex objects while keeping the creation process separate from the main object.
+>>
+>> **Implementing the Builder Pattern**
+>>
+>> 1. **Review the original class**: You have been provided with a class named `Message`. This class represents different message types and their attributes. Your task is to implement the Builder pattern to create instances of a class with the same properties.
+>> 2. **Create the builder class**: Create a new class called `MessageBuilder` that will implement the builder patter. A dummy class has been provided for you to start with. Remember to annotate the class with the @WithBuilder annotation. The name does not matter as long as it is annotated.
+>> 3. **Test your implementation**: Test cases has been provided for you to test your implementation. Run the test case to ensure that your implementation is correct.
