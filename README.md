@@ -6,10 +6,10 @@
     - [Behavioral](#behavioral-design-patterns)
 
 
-## Creational Design Patterns
+## 1. Creational Design Patterns
 Creational design patterns provide various object creation mechanisms, which increase flexibility and reuse of existing code.
 
-### 1. Singleton
+### 1.1. Singleton
 > **Singleton** is a creational design pattern that lets you ensure that a class has only one instance, while providing a global access point to this instance.
 > 
 > E.g. Having a database connection object or a logger object which required in most of the cases just one object and being used by multiple classes. Similar approach for configuration managers as well.
@@ -28,7 +28,10 @@ Creational design patterns provide various object creation mechanisms, which inc
 > **Eager Initialization**: Another way to create a singleton [class](src/com/practice/designpatterns/creational/singleton/sample/SingletonObjectEagerInit.java) without synchronization is using eager initialization.
 > 
 > However, using eager initialization is a memory overhead as the instance would be created at time of initial loading. But, in the contrary to the previous way for the multithreaded solution approach where initial access to the instance is slower (because of the creation), using eager initialization there is no such thing. 
-> 
+>
+>
+> **Useful Links**: [Serialize a Singleton](https://www.baeldung.com/java-serialize-singleton)
+>
 > **Exercise#1**: **File Based Configuration Manager**
 >> **Problem Statement**
 >>
@@ -89,7 +92,7 @@ Creational design patterns provide various object creation mechanisms, which inc
 >> 
 >> **Solution**: [Click](src/com/practice/designpatterns/creational/singleton/logger/impl/LoggerImpl.java)
 >
-> **Exercise#2**: **Connection Pool**
+> **Exercise#3**: **Connection Pool**
 >> **Problem Statement**
 >>
 >> You are tasked with designing a connection pool for a database management module of a complex software application.
@@ -120,12 +123,17 @@ Creational design patterns provide various object creation mechanisms, which inc
 >> * `int getTotalConnectionsCount()`: This method is about determining the total number of connections, whether they are currently in use or not.
 >> 
 >> **Solution**: [Click](src/com/practice/designpatterns/creational/singleton/connectionpool/impl/ConnectionPoolImpl.java)
-> 
-> **Links**: https://www.baeldung.com/java-serialize-singleton
 
-> ### 2. Builder
+### 1.2. Builder
 > **Builder** is a creational design pattern which helps to construct complex objects step by step. The pattern allows to produce different types and representations of an object using the same construction code.
+> 
+> Imagine a complex object that requires laborious, step-by-step initialization of many fields and nested objects. In those cases, such initialization code is usually buried inside a monstrous constructor with lots of parameters. Or even worse: scattered all over the client code.
+> 
+> **Telescoping Constructor**: The Telescoping Constructor is an example of an anti-pattern. In this (anti)pattern, a class has numerous constructors each one taking a different number of parameters, so that class can be instantiated with the correct combination of parameters on each situation, but that at the end, if the class has been properly written, all this constructors delegate to a default constructor. 
+> Maintaining telescoping of constructors is a difficult job and also the code is often not readable as developers need to remember the parameter sequence meticulously otherwise the code will break. Thus, the builder pattern is used to avoid this telescoping of the constructors.
 >
+> **Useful Links**: [Telescoping Constructor & Builder Pattern](https://medium.com/@modestofiguereo/design-patterns-2-the-builder-pattern-and-the-telescoping-constructor-anti-pattern-60a33de7522e)
+> 
 > **Exercise#1**: **Builder Pattern Implementation for a messaging service**
 >> **Problem Statement**
 >>
@@ -176,4 +184,59 @@ Creational design patterns provide various object creation mechanisms, which inc
 >> 3. **Test your implementation:** A test case has been provided for you to test your implementation. Run the test case to ensure that your implementation is correct. This will pick the correct implementation of the builder class based on the `@WithBuilder` annotation.
 >>
 >> **Solution**: [Click](src/com/practice/designpatterns/creational/builder/databaseconfiguration/DatabaseConfiguration.java)
+
+### 1.3. Prototype & Registry
+> **Prototype** is a creational design pattern that lets copy existing objects without making the code dependent on their classes.
+> 
+> Let’s say we have an object, and we want to create an exact copy of it. First, we have to create a new object of the same class. Then we have to go through all the fields of the original object and copy their values over to the new object.
+> 
+> The **Prototype** pattern delegates the cloning process to the actual objects that are being cloned. The pattern declares a common interface for all objects that support cloning. This interface lets us clone an object without coupling your code to the class of that object. Usually, such an interface contains just a single clone method.
+> 
+> **Simple**: A simple usage of Prototype [click](src/com/practice/designpatterns/creational/prototype/sample).
+> 
+> **Useful Links**: [Prototype Design Pattern Implementation in Java](https://medium.com/@thecodebean/prototype-design-pattern-implementation-in-java-b4b900f1ad9a)
+>
+> **Exercise#1**: **Prototype Pattern for Configuration Object Cloning**
+> 
+>> **Problem Statement**
+>>
+>> You are developing a configuration management system for your application. This system allows users to define and manage various configurations with different attributes. Creating new configurations with specific attributes is a frequent task during testing and development. However, setting up these configurations manually can be time-consuming and error-prone. To streamline this process, you decide to implement the Prototype pattern. This pattern will enable you to create prototype configuration objects and clone them when needed, saving time and reducing the risk of errors.
+>>
+>> **Assignment**
+>>
+>> Your task is to implement the Prototype pattern to create prototype objects for configuration management. You should define a `Configurable` interface that contains the clone method, which should be implemented by configuration objects. Additionally, you need to create a `ConfigurationPrototypeRegistry` interface that provides methods for adding and retrieving configuration prototypes and for cloning configuration objects. The goal is to simplify the process of creating configurations with specific attributes.
+>>
+>> **Implementing the Prototype Pattern**
+>>
+>> 1. **Define the `Configurable` interface:** Create an interface named Configurable with a single method, `clone()`, that returns a cloned copy of the implementing object.
+>> 2. **Implement the configuration object:** Implement the `Configuration` class with attributes such as `configId`, `configName`, `configValue`, `isEnabled`, and `type`. Ensure that the `Configuration` class implements the `Configurable` interface by providing a proper `clone` method that creates a deep copy of the configuration object.
+>> 3. **Define the `ConfigurationPrototypeRegistry` interface:** Create an interface named `ConfigurationPrototypeRegistry` that includes methods for adding prototypes, retrieving prototypes by type, and cloning configuration objects.
+>> 4. **Create the registry implementation:** Implement a class that adheres to the `ConfigurationPrototypeRegistry` interface. In this class, manage a collection of configuration prototypes and provide methods to add prototypes, retrieve prototypes by type, and clone configuration objects based on their type.
+>> 5. **Test your implementation:** Write test cases to ensure that the `Configuration` class correctly implements the `Configurable` interface, and the registry class properly manages prototypes and performs cloning operations. Verify that cloning a configuration object results in a new object with the same attribute values but is not the same object in memory.
+>>
+>> **Solution**: [Click](src/com/practice/designpatterns/creational/prototype/configobject)
+>> 
+>
+> **Exercise#2**: **Prototype Pattern for Efficient Invoice Generation**
+> 
+>> **Problem Statement**
+>>
+>> You are tasked with creating an API for invoice generation and testing. While testing, generating invoices from scratch by fetching data from a database is time-consuming, as retrieving a single invoice already takes several seconds. When you need to generate a large number of invoices for testing purposes, this approach becomes impractical. To optimize the testing process, you decide to implement the Prototype pattern. This pattern allows you to create prototype invoice objects and efficiently clone them as needed, significantly reducing the time and resources required for invoice generation during testing.
+>>
+>> **Assignment**
+>>
+>> Your assignment is to implement the Prototype pattern to create prototype invoice objects for efficient testing. You should define an `ObjectClonable` interface that contains the clone method, which should be implemented by invoice objects. Additionally, you need to create an `InvoicePrototypeRegistry` interface that provides methods for adding and retrieving invoice prototypes and for cloning invoice objects. The primary objective is to streamline the process of generating invoices for testing, making it faster and more resource-efficient.
+>>
+>> **Implementing the Prototype Pattern**
+>>
+>> 1. **Define the `ObjectClonable` interface:** Create an interface named `ObjectClonable` with a single method, `clone()`, that returns a cloned copy of the implementing object.
+>> 2. **Implement the invoice object:** Implement the `Invoice` class with attributes like `invoiceId`, `customerName`, `amount`, `dueDate`, and `invoiceType`. Ensure that the `Invoice` class implements the `ObjectClonable` interface by providing a proper `clone` method that creates a deep copy of the invoice object.
+>> 3. **Define the `InvoicePrototypeRegistry` interface:** Create an interface named `InvoicePrototypeRegistry` that includes methods for adding prototypes, retrieving prototypes by type, and cloning invoice objects.
+>> 4. **Create the registry implementation:** Implement a class that adheres to the `InvoicePrototypeRegistry` interface. In this class, manage a collection of invoice prototypes and provide methods to add prototypes, retrieve prototypes by type, and clone invoice objects based on their type.
+>> 5. **Test your implementation:** Write test cases to ensure that the `Invoice` class correctly implements the `ObjectClonable` interface and that the registry class properly manages prototypes and performs cloning operations. Verify that cloning an invoice object results in a new object with the same attribute values but is not the same object in memory.
+>>
+>> **Solution**: [Click](src/com/practice/designpatterns/creational/prototype/invoicegeneration)
+>> 
+>
+> 
 > 
