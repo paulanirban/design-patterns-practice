@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="spring-boot-3.2.1">
+  <library name="lombok">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/spring-boot-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/lombok.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
